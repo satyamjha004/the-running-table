@@ -1,6 +1,12 @@
 import { motion } from 'framer-motion';
+import { MessageCircle, MapPin, ShoppingCart, LayoutDashboard } from 'lucide-react';
 
 export default function RestaurantWebsite() {
+  const whatsappNumber = '919336177375';
+  const whatsappMessage = encodeURIComponent('Hello The Running Table, I would like to book a table.');
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+  const orderUrl = '#online-order';
+  const adminUrl = '/admin';
   const menuItems = [
     {
       name: 'Paneer Tikka',
@@ -172,7 +178,7 @@ export default function RestaurantWebsite() {
           </p>
 
           <div className="space-y-2 text-gray-300">
-            <p>📍 Jaj Mau, Kanpur, Uttar Pradesh, India</p>
+            <p>📍 The Running Table, Jaj Mau, Kanpur, Uttar Pradesh, India</p>
             <p>📞 +91 93361 77375</p>
             <p>🕒 Open Daily: 11:00 AM - 11:00 PM</p>
           </div>
@@ -271,6 +277,117 @@ export default function RestaurantWebsite() {
       </section>
 
       {/* Footer */}
+            {/* Quick Action Buttons */}
+      <div className="fixed right-4 bottom-6 z-50 flex flex-col gap-3">
+        <a
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-14 h-14 rounded-full bg-green-500 flex items-center justify-center shadow-2xl hover:scale-110 transition"
+          title="WhatsApp Booking"
+        >
+          <MessageCircle className="w-7 h-7 text-white" />
+        </a>
+
+        <a
+          href="https://maps.google.com/?q=Jaj+Mau+Kanpur+Uttar+Pradesh+India"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-14 h-14 rounded-full bg-red-500 flex items-center justify-center shadow-2xl hover:scale-110 transition"
+          title="View on Google Maps"
+        >
+          <MapPin className="w-7 h-7 text-white" />
+        </a>
+
+        <a
+          href={orderUrl}
+          className="w-14 h-14 rounded-full bg-yellow-400 flex items-center justify-center shadow-2xl hover:scale-110 transition"
+          title="Online Ordering"
+        >
+          <ShoppingCart className="w-7 h-7 text-black" />
+        </a>
+
+        <a
+          href={adminUrl}
+          className="w-14 h-14 rounded-full bg-blue-600 flex items-center justify-center shadow-2xl hover:scale-110 transition"
+          title="Admin Dashboard"
+        >
+          <LayoutDashboard className="w-7 h-7 text-white" />
+        </a>
+      </div>
+
+      {/* Google Maps */}
+      <section className="bg-zinc-950 py-24 px-6">
+        <div className="max-w-7xl mx-auto">
+          <h3 className="text-4xl md:text-5xl font-bold text-center mb-12">
+            Find Us on Google Maps
+          </h3>
+          <div className="rounded-3xl overflow-hidden shadow-2xl border border-zinc-800">
+            <iframe
+              title="The Running Table Location"
+              src="https://www.google.com/maps?q=Jaj%20Mau%20Kanpur%20Uttar%20Pradesh%20India&output=embed"
+              width="100%"
+              height="450"
+              style={{ border: 0 }}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Online Ordering */}
+      <section id="online-order" className="bg-black py-24 px-6">
+        <div className="max-w-5xl mx-auto text-center">
+          <p className="text-yellow-400 uppercase tracking-widest mb-2">
+            Online Ordering
+          </p>
+          <h3 className="text-4xl md:text-5xl font-bold mb-6">
+            Order Your Favorite Veg Dishes Online
+          </h3>
+          <p className="text-gray-300 text-lg mb-8 max-w-3xl mx-auto">
+            Customers can place orders directly through WhatsApp or future payment integrations such as Razorpay and UPI.
+          </p>
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 bg-yellow-400 text-black px-8 py-4 rounded-full font-bold hover:scale-105 transition"
+          >
+            <ShoppingCart className="w-5 h-5" />
+            Order Now
+          </a>
+        </div>
+      </section>
+
+      {/* Admin Dashboard Preview */}
+      <section id="admin-preview" className="bg-zinc-950 py-24 px-6">
+        <div className="max-w-6xl mx-auto">
+          <p className="text-yellow-400 uppercase tracking-widest mb-2 text-center">
+            Admin Dashboard
+          </p>
+          <h3 className="text-4xl md:text-5xl font-bold mb-12 text-center">
+            Manage Orders, Reservations & Customers
+          </h3>
+          <div className="grid md:grid-cols-4 gap-6">
+            {[
+              ['Today Orders', '128'],
+              ['Reservations', '42'],
+              ['Customers', '1,245'],
+              ['Revenue', '₹54,300'],
+            ].map(([label, value]) => (
+              <div
+                key={label}
+                className="bg-zinc-900 rounded-3xl p-6 border border-zinc-800 shadow-xl text-center"
+              >
+                <p className="text-gray-400 text-sm">{label}</p>
+                <p className="text-3xl font-bold text-yellow-400 mt-2">{value}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <footer
         id="contact"
         className="bg-black border-t border-zinc-800 py-12 px-6 text-center"
